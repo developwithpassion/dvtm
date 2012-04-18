@@ -35,9 +35,7 @@
 #endif
 #include "vt.h"
 
-#ifdef PDCURSES
 int ESCDELAY;
-#endif
 
 typedef struct {
 	double mfact;
@@ -1240,11 +1238,11 @@ parse_args(int argc, char *argv[]) {
 				break;
 			}
 			case 'd':
-				ESCDELAY = atoi(argv[++arg]);
+				set_escdelay(atoi(argv[++arg]));
 				if (ESCDELAY < 50)
-					ESCDELAY = 50;
+					set_escdelay(50);
 				else if (ESCDELAY > 1000)
-					ESCDELAY = 1000;
+					set_escdelay(1000);
 				break;
 			case 'h':
 				screen.history = atoi(argv[++arg]);
